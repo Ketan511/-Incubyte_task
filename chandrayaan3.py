@@ -7,7 +7,7 @@ class Chandrayaan3:
         self.prev = 'N'
 
     def move(self, command, dir):
-        if command == 'f':
+        if command == 'f':   
             if dir == 'N':
                 self.position[1] += 1
             elif dir == 'S':

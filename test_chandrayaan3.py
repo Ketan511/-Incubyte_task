@@ -51,5 +51,12 @@ class TestChandrayaan3(unittest.TestCase):
         self.assertEqual(chandrayaan.getPosition(), [-4, 2, -1])
         self.assertEqual(chandrayaan.getDirection(), 'E')
 
+    def test_sequence_of_commands2(self):
+        chandrayaan = Chandrayaan3()
+        commands = ['u', 'r', 'u', 'b', 'r','f','f','l','r','d']
+        chandrayaan.execute_commands(commands)
+        self.assertEqual(chandrayaan.getPosition(), [0, -2, -1])
+        self.assertEqual(chandrayaan.getDirection(), 'D')
+
        
 
