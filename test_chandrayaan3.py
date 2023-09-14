@@ -33,3 +33,23 @@ class TestChandrayaan3(unittest.TestCase):
         chandrayaan = Chandrayaan3()
         chandrayaan.tilt('d','S')
         self.assertEqual(chandrayaan.getDirection(), 'D')
+
+    def test_sequence_of_commands(self):
+        chandrayaan = Chandrayaan3()
+        commands = ['f', 'r', 'u', 'b', 'l']
+        chandrayaan.execute_commands(commands)
+        self.assertEqual(chandrayaan.getPosition(), [0, 1, -1])
+        self.assertEqual(chandrayaan.getDirection(), 'N')
+
+        cmd=['b','l','u','r','f','f','l']
+        chandrayaan.execute_commands(cmd)
+        self.assertEqual(chandrayaan.getPosition(), [0, 2, -1])
+        self.assertEqual(chandrayaan.getDirection(), 'W')
+
+        cmd2=['f','f','u','u','l','l','b','b']
+        chandrayaan.execute_commands(cmd2)
+        self.assertEqual(chandrayaan.getPosition(), [-4, 2, -1])
+        self.assertEqual(chandrayaan.getDirection(), 'E')
+
+       
+

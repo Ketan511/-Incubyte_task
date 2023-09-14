@@ -94,6 +94,15 @@ class Chandrayaan3:
                 self.direction = 'D'
             else:
                 self.direction = 'D'
+
+    def execute_commands(self, commands):
+        for command in commands:
+            if command in ('f', 'b'):
+                self.move(command, self.direction)
+            elif command in ('l', 'r'):
+                self.turn(command, self.direction)
+            elif command in ('u', 'd'):
+                self.tilt(command, self.direction)
             
 
     def getPosition(self):
