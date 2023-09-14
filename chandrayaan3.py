@@ -5,16 +5,61 @@ class Chandrayaan3:
         self.position = [0, 0, 0]
         self.direction = 'N'
 
-    def move(self, command):
+    def move(self, command, dir):
         if command == 'f':
-            self.position[1] += 1
+            if dir == 'N':
+                self.position[1] += 1
+            elif dir == 'S':
+                self.position[1] -= 1
+            elif dir == 'E':
+                self.position[0] += 1
+            elif dir == 'W':
+                self.position[0] -= 1
+            elif dir == 'U':
+                self.position[2] += 1
+            elif dir == 'D':
+                self.position[2] -= 1
         elif command == 'b':
-            self.position[1] -= 1
-
-    def turn(self, command):
+            if dir == 'N':
+                self.position[1] -= 1
+            elif dir == 'S':
+                self.position[1] += 1
+            elif dir == 'E':
+                self.position[0] -= 1
+            elif dir == 'W':
+                self.position[0] += 1
+            elif dir == 'U':
+                self.position[2] -= 1
+            elif dir == 'D':
+                self.position[2] += 1
+    
+    def turn(self, command, dir):
         if command == 'l':
-            if self.direction == 'N':
+            if dir == 'N':
                 self.direction = 'W'
+            elif dir == 'S':
+                self.direction = 'E'
+            elif dir == 'E':
+                self.direction = 'N'
+            elif dir == 'W':
+                self.direction = 'S'
+            elif dir == 'U':
+                self.turn(command, self.prev)  # Use previous direction
+            elif dir == 'D':
+                self.turn(command, self.prev)
+        elif command == 'r':
+            if dir == 'N':
+                self.direction = 'E'
+            elif dir == 'S':
+                self.direction = 'W'
+            elif dir == 'E':
+                self.direction = 'S'
+            elif dir == 'W':
+                self.direction = 'N'
+            elif dir == 'U':
+                self.turn(command, self.prev)
+            elif dir == 'D':
+                self.turn(command, self.prev)
             
 
     def tilt(self, command):
