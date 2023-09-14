@@ -2,8 +2,9 @@
 
 class Chandrayaan3:
     def __init__(self):
-        self.position = [0, 0, 0]
-        self.direction = 'N'
+        self.position = [0, 0, 0]  # Initial position (x, y, z)
+        self.direction = 'N'      # Initial direction (N, S, E, W, U, D)
+        self.prev = 'N'
 
     def move(self, command, dir):
         if command == 'f':
@@ -46,7 +47,7 @@ class Chandrayaan3:
             elif dir == 'U':
                 self.turn(command, self.prev)  # Use previous direction
             elif dir == 'D':
-                self.turn(command, self.prev)
+                self.turn(command, self.prev)  #calling function with previous direction values
         elif command == 'r':
             if dir == 'N':
                 self.direction = 'E'
@@ -62,10 +63,37 @@ class Chandrayaan3:
                 self.turn(command, self.prev)
             
 
-    def tilt(self, command):
-        if command == 'u':
-            if self.direction == 'N':
+    def tilt(self, command, dir):
+        if command == 'u': 
+            if dir == 'N':
+                self.prev = 'N'  #storing for turn purpose
                 self.direction = 'U'
+            elif dir == 'S':
+                self.prev = 'S'
+                self.direction = 'U'
+            elif dir == 'E':
+                self.prev = 'E'
+                self.direction = 'U'
+            elif dir == 'W':
+                self.prev = 'W'
+                self.direction = 'U'
+            else:
+                self.direction = 'U'
+        elif command == 'd':
+            if dir == 'N':
+                self.prev = 'N'
+                self.direction = 'D'
+            elif dir == 'S':
+                self.prev = 'S'
+                self.direction = 'D'
+            elif dir == 'E':
+                self.prev = 'E'
+                self.direction = 'D'
+            elif dir == 'W':
+                self.prev = 'W'
+                self.direction = 'D'
+            else:
+                self.direction = 'D'
             
 
     def getPosition(self):
